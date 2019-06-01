@@ -1,0 +1,48 @@
+<% include ../partials/header.ejs %>
+<style>.form-control{
+         margin-left: auto;
+         margin-right: auto;
+         width: 30%;
+         }
+       h1{
+         text-align: center;
+         margin-bottom: 25px}
+       button{
+         margin-left: 35%;
+         margin-right: auto;
+         width: 30%;
+       }
+       .btn{
+         margin-bottom: 10px;
+       }
+       a{
+        margin-left: 37.5%;
+       }
+       body{
+        
+         background-position: center;
+          background: url(image1.jpg);
+         padding-top: 70px;
+}  
+       </style>
+       
+<form action="/vechiles/<%= vechile._id %>/edit" method="post" class="container">
+  <h1>Edit Vechile <%=vechile.name%></h1>
+  <div class="form-group">
+    <input type="text" class="form-control" value="<%=vechile.name%>"  name="vechile[name]" required>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" value="<%=vechile.image%>" name="vechile[image]" required>
+    
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" value="<%=vechile.price%>" name="vechile[price]" min="0.01" step="0.01" required>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" value="<%=vechile.description%>" name="vechile[description]" required>
+  </div>
+  <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+</form>
+<a href="/vechiles">Go back</a>
+
+<% include ../partials/footer.ejs %>

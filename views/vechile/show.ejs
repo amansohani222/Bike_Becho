@@ -1,0 +1,104 @@
+<% include ../partials/header.ejs %>
+
+<style>
+        img {
+  width: 100%;
+  height: auto;
+}
+        .nm{
+                text-align: left;
+        }
+        #price{
+                float: right;
+        }
+        .btn-group-vertical>.btn, .btn-group-vertical>.btn-group, .btn-group-vertical>.btn-group>.btn{
+                width: 250px;
+        }
+        .btn-success{
+                float: right;
+        }
+        #date{
+                float: right;
+        }
+        .thumbnail{
+                padding: 0px;
+        }
+        .cntnt{
+                padding: 10px;
+        }
+        #xyz{
+                margin-bottom: 1px;
+        }
+        body{
+                 background: url(image1.jpg);
+    background-position: center;
+                padding-top: 70px;
+}
+        .delete_button{
+                display: inline;
+        }
+        
+</style>
+
+<div class="container">
+        <div class="row">
+                <div class="col-md-3">
+                        <h1>Bike Becho</h1>
+                        <div class="btn-group-vertical" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default active">Catogery 1</button>
+                                <button type="button" class="btn btn-default ">Catogery 2</button>
+                                <button type="button" class="btn btn-default ">Catogery 3</button>
+                          
+                        </div>
+                </div>
+                <div class="col-md-9">
+                        <div class="thumbnail">
+                                <img src="<%=vechile.image%>">
+                                <div class="cntnt">
+                                        <h4 class="nm"><span><a><%=vechile.name%></a></span><span id="price"><%=vechile.price%> ₹</span></h4>
+                                        <p><%=vechile.description %></p>
+                                        <p><em>Owned By <%= vechile.author.username %></em></p>
+                                        <% if(currentUsr!=null)
+                                            if(currentUsr._id.equals(vechile.author.id))
+                                           { %> <a href="/vechiles/<%= vechile._id %>/edit"><button class="btn btn-warning btn-sm">EDIT</button></a>
+                                                <form action="/vechiles/<%= vechile._id %>/delete" class="delete_button" method="POST">
+                                                        <button class="btn btn-danger btn-sm"  >DELETE</button>
+                                                </form> <% } %>
+                                </div>
+                        </div>
+                        <div class="well">
+                                <span>
+                                          <a href="/vechiles/<%=vechile._id%>/comments/new" class="btn btn-success">Leave a Review</a>
+                                </span>
+                                <br>
+                                <hr>
+                                <% for(var i=0; i < vechile.comments.length; i++)
+                                { %> <div>
+                                             <p id="xyz"><strong class="nm"><%= vechile.comments[i].author.username; %></strong><span id="date">10 Days Ago</span></p>
+                                             <p><%= vechile.comments[i].text; %></p>
+                                             <% if(currentUsr!=null && currentUsr._id.equals(vechile.comments[i].author.id))
+                                                { %> <a href="/vechiles/<%= vechile._id %>/comments/<%= vechile.comments[i]._id %>/edit"><button class="btn btn-warning btn-xs">EDIT</button></a>
+                                                     <form action="/vechiles/<%= vechile._id %>/comments/<%= vechile.comments[i]._id %>/delete" class="delete_button" method="POST">
+                                                             <button class="btn btn-danger btn-xs">DELETE</button>
+                                                     </form> <% } %>
+                                     </div>
+                                     <br>
+                                <% } %>
+                        </div>
+                        
+                </div>
+        </div>  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+   
+<% include ../partials/footer.ejs %>

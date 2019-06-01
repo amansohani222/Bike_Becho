@@ -1,0 +1,26 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome To BikeBecho.com</h1>
+    <p>View all multibrand two whellers from all over the city</p>
+    <p><a class="btn btn-primary btn-lg" href="/vechiles/new" role="button">Add a new vechile</a></p>
+  </div>
+</div>
+<div class="container">
+<% var x = Math.ceil(vechiles.length/4);
+   var k=0 ; %>
+<% for(var i=0;i<x;i++) { %>
+      <div class="row" style="display:flex; flex-wrap: wrap; text-align: center">
+      <% for(var j=0;j<4&&k<vechiles.length;j++) { %>
+           <div class="col-md-3 col-sm-6"> 
+              <div class="thumbnail">
+                <img src="<%= vechiles[k].image; %>" onerror=this.src="vechile_default_icon.PNG">
+                <h3><%= vechiles[k].name; %></h3>
+                <a href="/vechiles/<%=vechiles[k]._id%>"><button class="btn btn-primary">Show More</button></a>
+            </div>
+           </div>
+      <% k++; }%>
+     </div>
+<% ; } %>
+</div>
+<% include ../partials/footer.ejs %>
